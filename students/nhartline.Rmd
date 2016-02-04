@@ -31,14 +31,53 @@ output:
         
   [IUCN Red List](http://www.iucnredlist.org/) and [FAOSTAT](http://faostat.fao.org/) will be the two primary data sources for this endeavor. 
   
-```{r}
+```{r wk02 Importing data}
 
 Singleton_Country_Aggregates = read.csv('data/zebos1_Singleton_Country_Aggregates.csv')
 
 summary(Singleton_Country_Aggregates)
 ```
   
-  ## Data Wrangling
-  
+
+```{r wk04 Directory}
+  # set working directory if has students directory and at R Console (vs knitting)
+if ('students' %in% list.files() & interactive()){
+    setwd('students' )
+}
+
+# ensure working directory is students
+if (basename(getwd()) != 'students'){
+  stop(sprintf("WHOAH! Your working directory is not in 'students'!\n   getwd(): %s", getwd()))
+}
+
+# absolute: /Users/bbest/github/env-info/students/data/bbest_ports-bc.csv
+d = read.csv('./data/bbest_ports-bc.csv')     # ./data is child of students
+
+# absolute: /Users/bbest/github/env-info/data/r-ecology/surveys.csv
+d = read.csv('../data/r-ecology/surveys.csv') # ../data is sibling of students
+
+
+```
+
+
+```{r wk04 Tidying}
+
+library(EDAWR)
+help(package='EDAWR')
+?storms    # wind speed data for 6 hurricanes
+?cases     # subset of WHO tuberculosis
+?pollution # pollution data from WHO Ambient Air Pollution, 2014
+?tb        # tuberculosis data
+View(storms)
+View(cases)
+View(pollution)
+
+pollution[["city"]]
+
+```
+
+
+
+
   
   
